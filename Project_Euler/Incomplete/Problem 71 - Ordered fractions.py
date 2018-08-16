@@ -36,20 +36,35 @@ def find_largest_common_factor(x, y):
 def sort_by_fraction_size(xs):
 	return (xs[0]/xs[1])
 
+def Euclidean(one, two):
+	if (one > two):
+		three = one % two
+		while (three != 0):
+
+			one = two
+			two = three
+
+			three = one % two
+		return two
+
 
 start_time = time.time()
 
-fractions = []
-print(3/7)
+current_max = (0, 1)
 
-for x in range(428571, 1000001):
-	for y in range (1000000, 999998, -1):
-		if(x/y < 3/7):
-			lcf = find_largest_common_factor(x, y)
-			if(((x/lcf), (y/lcf)) not in fractions):
-				print(((x/lcf), (y/lcf)))
-				fractions.append(((x/lcf), (y/lcf)))
+# for x in range(1, 1000000):
+# 	for y in range(1000000, 1, -1):
+# 		if(x/y < 3/7):
+# 			lcf = Euclidean(y, x)
+# 			if((x/lcf)/(y/lcf) > (current_max[0]/current_max[1])):
+# 				current_max =((x/lcf),(y/lcf))
+# 				print(current_max)
+#
+for x in range(1, 1000000):
+	for y in range(1000000, 1, -1):
+		tracker = 3/7 - (x/y)
+		if(tracker <= 1/1000000):
+			current_max =(x,y)
 
-fractions.sort(key = sort_by_fraction_size)
-print(fractions)
+print(current_max)
 print("--- %s seconds ---" % (time.time() - start_time))
