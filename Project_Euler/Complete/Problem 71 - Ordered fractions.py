@@ -67,9 +67,13 @@ current_max = (0, 1)
 # 			print(current_max)
 # 			current_max =(x,y)
 
-print(3/7>428572/999999)
-print(Euclidean(999999, 428571))
-print(current_max)
+for i in range (1, 1000001):
+	if(i%7==0):
+		denom = i
 
-print("ANSWER: 428570")
+numerator = denom/7 *3
+
+print(denom)
+print("Answer is ", numerator -1)
+
 print("--- %s seconds ---" % (time.time() - start_time))
