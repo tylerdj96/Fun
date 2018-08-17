@@ -70,4 +70,6 @@ current_max = (0, 1)
 print(3/7>428572/999999)
 print(Euclidean(999999, 428571))
 print(current_max)
+
+print("ANSWER: 428570")
 print("--- %s seconds ---" % (time.time() - start_time))
