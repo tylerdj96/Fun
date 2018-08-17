@@ -60,11 +60,14 @@ current_max = (0, 1)
 # 				current_max =((x/lcf),(y/lcf))
 # 				print(current_max)
 #
-for x in range(1, 1000000):
-	for y in range(1000000, 1, -1):
-		tracker = 3/7 - (x/y)
-		if(tracker <= 1/1000000):
-			current_max =(x,y)
+# for x in range(200000, 300000):
+# 	for y in range(500000, 700000):
+# 		tracker = 3/7 - (x/y)
+# 		if(tracker <= 1/1000000 and tracker > 0):
+# 			print(current_max)
+# 			current_max =(x,y)
 
+print(3/7>428572/999999)
+print(Euclidean(999999, 428571))
 print(current_max)
 print("--- %s seconds ---" % (time.time() - start_time))
