@@ -21,37 +21,51 @@ def is_prime(x):
 
 ## True indicates a prime so all values initially set to False
 def Eratosthenes(x):
-    marked_nums = ['false']*(x-1)
-    p = 0
-    while(p<=(x)):
+    marked_nums = ['true']*(x-1)
+    primes = []
+    p = 2
+    while(p<=math.sqrt(x)):
         # marked_nums[0] = 'true'
         j = p + 2
-        for i in range(p, len(marked_nums), j):
-            marked_nums[i]='true'
-        if('false' in marked_nums):
-            p = marked_nums.index('false')
-            if(p==x-2):
-                return True
-        else:
-            return False
+        if(marked_nums[p] == 'true'):
+            for i in range(p*2, len(marked_nums), p):
+                marked_nums[i-2]='false'
+        p += 1
+        print(marked_nums)
+        #     else:
+        #         marked_nums[i]='checked'
+        # if('false' in marked_nums):
+        #     p = marked_nums.index('false')
+        # else:
+        #     return primes
+    for j in range(0, len(marked_nums)):
+        if(marked_nums[j]=='true'):
+            primes.append(j+2)
+    return primes
 
 start_time = time.time()
-running_sum = 0
+running_sum = []
 
-for i in range(1,2000000):
+for i in range(1,17):
      if(is_prime(i)):
-         running_sum += i
+         running_sum.append(i)
 
 print(running_sum)
 print("--- %s seconds with trial division ---" % (time.time() - start_time))
 
 
 start_time = time.time()
-running_sum = 0
+# for i in range(1,2000000):
+#      if(Eratosthenes(i)):
+#          running_sum += i
+sum = 0
+primes = Eratosthenes(13)
+print(primes)
 
-for i in range(1,2000000):
-     if(Eratosthenes(i)):
-         running_sum += i
 
-print(running_sum)
+shared = primes or running_sum
+print(shared)
+for i in range(0, len(primes)):
+    sum += primes[i]
+print(sum)
 print("--- %s seconds with Eratosthenes ---" % (time.time() - start_time))
