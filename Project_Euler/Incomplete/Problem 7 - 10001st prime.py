@@ -7,4 +7,5 @@ import math
 def is_prime(x):
     i = math.sqrt(x)
     while(x<i):
-        if(x%2==0 or x%3==0 or)
+        if(x%2==0 or x%3==0):
+            print("blah")
