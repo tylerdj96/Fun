@@ -59,15 +59,32 @@ def find_triangle(number):
 
 start_time = time.time()
 
+
+# #########WRONG################
+# x=1
+# y = True
+# while(y==True):
+#     curr_tri = (find_triangle(x))
+#     num_factors = determine_num_factors(x)
+#     print(num_factors)
+#     if(num_factors>500):
+#         break
+#     x += 1
+
+#########RIGHT###############
 x=1
 y = True
+curr_tri = 0
 while(y==True):
-    curr_tri = (find_triangle(x))
-    num_factors = determine_num_factors(x)
+    curr_tri += x
+    num_factors = determine_num_factors(curr_tri)
     if(num_factors>500):
         break
     x += 1
 
 
+#
+print("triangle number: ", x, )
+print("value of triangle number: ", curr_tri)
 
 print("RUN TIME : ", time.time()-start_time)
