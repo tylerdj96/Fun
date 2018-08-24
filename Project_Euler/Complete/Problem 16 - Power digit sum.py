@@ -5,9 +5,9 @@
 num = 2 ** 1000
 digits  = []
 num = str(num)
-print(num[1])
+
 for x in num:
     integer = int(x)
     digits.append(integer)
-print(digits)
+
 print(sum(digits))
