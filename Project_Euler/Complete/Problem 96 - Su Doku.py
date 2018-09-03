@@ -54,7 +54,7 @@ class DoubleList(object):
 class Spine(object):
 
     def __init__(self):
-        
+
 
 d = DoubleList()
 
