@@ -1,1 +1,1 @@
-Project Euler Solutions implemented in Python
+Project Euler Solutions implemented in Python, and other wacky things
