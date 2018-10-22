@@ -28,28 +28,15 @@ export default class characterDetailScreen extends React.Component {
         const {navigation} = this.props;
         this.state.name = navigation.getParam('characterName', '');
         this.state.realm = navigation.getParam('realm', '');
-        console.log(this.state.realm);
-        console.log(this.state.name)
         const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc'
-        console.log(characterURI)
-        return fetch('https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc')
+
+        return fetch(characterURI)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
                     dataSource: responseJson
-                    // name: responseJson.name,
-                    // realm : responseJson.realm,
-                    // class : responseJson.class,
-                    // race : responseJson.race,
-                    // gender : responseJson.gender,
-                    // level : responseJson.level,
-                    // thumbnail : responseJson.thumbnail,
-                    // faction : responseJson.faction,
-                    // totalHonorableKills : responseJson.totalHonorableKills
                 })
-                console.log(this.state.dataSource);
-                console.log(this.state.dataSource.name);
             })
             .catch((error) => {
                 console.error(error);
