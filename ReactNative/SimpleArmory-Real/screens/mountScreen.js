@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
-export default class firstPage extends React.Component {
+export default class mountScreen extends React.Component {
 
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ export default class firstPage extends React.Component {
             .then((responseJson) => {
                 this.setState({
                     isLoading: false,
-                    dataSource: responseJson.mounts
+                    dataSource: responseJson.mountScreen
                 })
             })
             .catch((error) => {
