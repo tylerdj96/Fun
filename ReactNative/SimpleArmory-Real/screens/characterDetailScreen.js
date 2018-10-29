@@ -9,6 +9,7 @@ export default class characterDetailScreen extends React.Component {
         super(props);
         this.state ={
             isLoading: true,
+            isError: false,
             name : "",
             realm : "",
             class : "",
@@ -22,29 +23,11 @@ export default class characterDetailScreen extends React.Component {
         }
     }
 
-    onPressMe = () => {
-        console.log("Pressed!!!")
-    };
-
-
-
     async componentDidMount(){
         const {navigation} = this.props;
         this.state.name = navigation.getParam('characterName', '');
         this.state.realm = navigation.getParam('realm', '');
         const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
-
-
-        // fetch(characterURI)
-        //     .then((response) => response.json())
-        //     .then((responseJson) => {
-        //         this.setState({
-        //             dataSource: responseJson
-        //         })
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
 
         const response = await this.dataCall(characterURI);
 
@@ -53,36 +36,26 @@ export default class characterDetailScreen extends React.Component {
         const imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail;
         console.log(imageURI);
 
-        // return fetch(imageURI)
-        //     .then((response) => response.json())
-        //     .then((responseJson) => {
-        //         this.setState({
-        //             isLoading: false,
-        //             photos: responseJson
-        //         })
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
-
-        const imageresponse = await this.imageCall(imageURI);
 
     }
 
     dataCall = async (characterURI) => {
         let response = await fetch(characterURI);
-        let json = await response.json();
-        this.setState({dataSource: json, isLoading: false});
+        let responseStatus = await response.ok;
+        if(responseStatus){
+            console.log("POOOOOOOOOOOOOP");
+            let parsedJson = await response.json();
+            console.log(response);
+            this.setState({dataSource: parsedJson, isLoading: false, isError: false});
+        }
+        else{
+            console.log("ryan");
+            this.setState({dataSource: "Error! Please try again!", isLoading: false, isError: true})
+        }
 
         console.log(this.state.dataSource);
     };
 
-    imageCall = async (imageURI) => {
-        let response = await fetch(imageURI);
-        let image = await response;
-        this.setState({photos: image});
-        console.log(this.state.photos);
-    };
 
     render() {
 
@@ -94,9 +67,17 @@ export default class characterDetailScreen extends React.Component {
             )
         }
 
+        else if(this.state.isError){
+            return(
+                <View style={{flex: 1, padding: 20}}>
+                    <Text>Error! Please try again!</Text>
+                </View>
+            )
+        }
+
         return(
             <View style={{flex: 1, paddingTop:20}}>
-                <Text>{this.state.dataSource.name}, {this.state.dataSource.realm}, {this.state.dataSource.class}, {this.state.dataSource.gender}, {this.state.dataSource.thumbnail}, {this.state.dataSource.faction}, {this.state.dataSource.totalHonorableKills}, {this.state.dataSource.level}</Text>}
+                <Text>{this.state.dataSource.name}, {this.state.dataSource.realm}, {this.state.dataSource.class}, {this.state.dataSource.gender}, {this.state.dataSource.faction}, {this.state.dataSource.totalHonorableKills}, {this.state.dataSource.level}</Text>}
                 <Image
                     style={{width: 430, height: 200}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail}}
