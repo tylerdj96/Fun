@@ -31,5 +31,6 @@ for x in my_list:
         ## we can remove the elements from the master list. Avoid adding duplicates!
         my_list.remove(curr)
         my_list.remove(x)
+
 print(sum(amicables))
 
