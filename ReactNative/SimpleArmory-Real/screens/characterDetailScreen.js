@@ -39,17 +39,18 @@ export default class characterDetailScreen extends React.Component {
 
     }
 
+    onPressMe = () => {
+        this.props.navigation.navigate('PvPDetailScreen')
+    }
+
     dataCall = async (characterURI) => {
         let response = await fetch(characterURI);
         let responseStatus = await response.ok;
         if(responseStatus){
-            console.log("POOOOOOOOOOOOOP");
             let parsedJson = await response.json();
-            console.log(response);
             this.setState({dataSource: parsedJson, isLoading: false, isError: false});
         }
         else{
-            console.log("ryan");
             this.setState({dataSource: "Error! Please try again!", isLoading: false, isError: true})
         }
 
@@ -78,6 +79,12 @@ export default class characterDetailScreen extends React.Component {
         return(
             <View style={{flex: 1, paddingTop:20}}>
                 <Text>{this.state.dataSource.name}, {this.state.dataSource.realm}, {this.state.dataSource.class}, {this.state.dataSource.gender}, {this.state.dataSource.faction}, {this.state.dataSource.totalHonorableKills}, {this.state.dataSource.level}</Text>}
+                <Button
+                    onPress={this.onPressMe}
+                    title="Tabs Page"
+                    color="#841584"
+                    accessibilityLabel="Learn more about this purple button"
+                />
                 <Image
                     style={{width: 430, height: 200}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail}}

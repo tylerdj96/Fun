@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Button, Picker, TextInput } from 'react-native'
 import { createStackNavigator } from 'react-navigation';
 import mountScreen from './screens/mountScreen'
 import characterDetailScreen from "./screens/characterDetailScreen";
+import pvpDetailsScreen from "./screens/pvpDetailsScreen";
 import getCharacterInfo from "./services/getCharacterInfo";
+import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
 
 class HomeScreen extends React.Component {
 
@@ -78,8 +80,11 @@ export default createStackNavigator(
         screen: HomeScreen
     },
     CharacterDetailScreen: {
-        screen: characterDetailScreen,
-    }
+        screen: characterDetailScreen
+    },
+    PvPDetailScreen: {
+        screen: pvpDetailsScreen
+    },
     },
     {
         initialRouteName: 'Home'
