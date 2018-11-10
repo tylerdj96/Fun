@@ -51,7 +51,7 @@ export default class characterDetailScreen extends React.Component {
             this.setState({dataSource: parsedJson, isLoading: false, isError: false});
         }
         else{
-            this.setState({dataSource: "Error! Please try again!", isLoading: false, isError: true})
+            this.setState({dataSource: "Error!!! Please try again!", isLoading: false, isError: true})
         }
 
         console.log(this.state.dataSource);
