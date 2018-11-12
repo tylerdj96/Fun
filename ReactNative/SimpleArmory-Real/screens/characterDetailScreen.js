@@ -20,6 +20,7 @@ export default class characterDetailScreen extends React.Component {
             faction : "",
             totalHonorableKills : "",
             photos : "",
+            pvp: {},
         }
     }
 
@@ -27,7 +28,7 @@ export default class characterDetailScreen extends React.Component {
         const {navigation} = this.props;
         this.state.name = navigation.getParam('characterName', '');
         this.state.realm = navigation.getParam('realm', '');
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         const response = await this.dataCall(characterURI);
 
@@ -40,21 +41,27 @@ export default class characterDetailScreen extends React.Component {
     }
 
     onPressMe = () => {
-        this.props.navigation.navigate('PvPDetailScreen')
-    }
+        // console.log(this.state.dataSource.pvp);
+        this.props.navigation.navigate('PvPDetailScreen',
+            {
+            pvp: this.state.dataSource.pvp,
+            })
+    };
 
     dataCall = async (characterURI) => {
         let response = await fetch(characterURI);
         let responseStatus = await response.ok;
         if(responseStatus){
             let parsedJson = await response.json();
+            //console.log(parsedJson);
             this.setState({dataSource: parsedJson, isLoading: false, isError: false});
         }
         else{
             this.setState({dataSource: "Error!!! Please try again!", isLoading: false, isError: true})
         }
 
-        console.log(this.state.dataSource);
+        // console.log(this.state.dataSource);
+        // console.log(this.state.dataSource.pvp.brackets.ARENA_BRACKET_2v2.rating);
     };
 
 
