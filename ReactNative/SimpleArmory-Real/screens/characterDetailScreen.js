@@ -1,9 +1,7 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View, Button, Image } from 'react-native';
-
-import { createStackNavigator } from 'react-navigation';
-import HomeScreen from '../App';
-
+import { StyleSheet, Text, View, Button, Image, Picker } from 'react-native';
+import {Drawer} from "../services/navigators.js"
+import {DrawerActions} from "react-native"
 
 var raceDict = {
 
@@ -18,7 +16,7 @@ var raceDict = {
     9: "Goblin",
     10: "Blood Elf",
     11: "Draenei",
-    12: "Fel Orc",
+    12: "Fel Orc!",
     13: "Naga",
     14: "Broken",
     15: "Skeleton",
@@ -44,7 +42,6 @@ var raceDict = {
     35: "Vulpera",
     36: "Mag'har Orc",
 };
-
 var classDict = {
     1: "Warrior",
     2: "Paladin",
@@ -77,6 +74,7 @@ export default class characterDetailScreen extends React.Component {
             faction : "",
             totalHonorableKills : "",
             photos : "",
+            screen : "",
             pvp: {},
         }
     }
@@ -85,23 +83,27 @@ export default class characterDetailScreen extends React.Component {
         const {navigation} = this.props;
         this.state.name = navigation.getParam('characterName', '');
         this.state.realm = navigation.getParam('realm', '');
+        console.log(this.state.name);
         const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         const response = await this.dataCall(characterURI);
 
-        //TOGGLE THIS LINE TO CHANGE AVATAR IMAGE TO INSET or BIG PHOTO FROM AVATAR (tiny square)
-
-        // this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "inset");
-        //this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "main");
-
-        const imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail;
-        console.log(imageURI);
+        console.log(this.state.dataSource.pvp);
+        //this.state.thumbnail = imageURI;
+        console.log("image URI is: "+ this.state.thumbnail);
 
 
     }
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Character',
+        };
+    };
+
     onPressMe = () => {
-        this.props.navigation.navigate('PvPDetailScreen',
+        console.log(this.state.screen);
+        this.props.navigation.navigate('PvP',
             {
             pvp: this.state.dataSource.pvp,
             })
@@ -123,11 +125,21 @@ export default class characterDetailScreen extends React.Component {
 
         this.setState({race:raceDict[this.state.dataSource.race]});
         this.setState({class:classDict[this.state.dataSource.class]});
+
+        //TOGGLE THIS LINE TO CHANGE AVATAR IMAGE TO INSET or BIG PHOTO FROM AVATAR (tiny square)
+
+        //this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "inset");
+        this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "main");
+
+        var imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail;
+
+        this.setState({thumbnail: imageURI});
     };
 
 
     render() {
 
+        <Drawer/>
 
         if(this.state.isLoading){
             return(
@@ -157,11 +169,12 @@ export default class characterDetailScreen extends React.Component {
                 <Text style={{color: '#FFFFFF'}}>{this.state.dataSource.realm}</Text>
                 <Text style={{fontWeight: 'italics', color: '#FFFFFF'}}> Level {this.state.dataSource.level} {this.state.race} {this.state.class}</Text>
                 <Image
-                    style={{width: 200, height: 200}}
+                    style={{width: 400, height: 600}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail}}
                 />
             </View>
         );
+
     }
 
 }
@@ -187,3 +200,21 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
 });
+
+// export default DrawerNavigator({
+//     Character: {
+//         screen: characterDetailScreen
+//     },
+//     PvP: {
+//         screen: pvpDetailsScreen,
+//     },
+//     Mounts: {
+//         screen: mountScreen,
+//     },
+// }, {
+//     drawerPosition: 'right',
+//     initialRouteName: 'Character',
+//     drawerWidth : 200,
+// });
+
+

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
 
 export default class mountScreen extends React.Component {
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View, Button, Image } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import HomeScreen from '../App';
-import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
+import { navigationOp } from 'react-navigation';
+
+import {TabView, TabBar} from 'react-native-tab-view';
 
 const determine_icon = (rating) => {
     if(rating==0){
@@ -30,6 +30,10 @@ const determine_icon = (rating) => {
 
 export default class pvpDetailsScreen extends React.Component {
 
+    static navigationOptions = {
+        drawerLabel: 'PvP',
+    };
+
   constructor(props){
       super(props);
       this.state ={
@@ -51,6 +55,7 @@ export default class pvpDetailsScreen extends React.Component {
         const {navigation} = this.props;
 
         this.state.pvp = navigation.getParam('pvp', '');
+        console.log(this.state.pvp);
 
         this.state.twos = this.state.pvp.brackets.ARENA_BRACKET_2v2;
         this.state.threes = this.state.pvp.brackets.ARENA_BRACKET_3v3;
