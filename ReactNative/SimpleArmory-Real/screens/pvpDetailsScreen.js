@@ -1,6 +1,8 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View, Button, Image } from 'react-native';
+import {connect} from 'react-redux';
 import { navigationOp } from 'react-navigation';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, mapStateToProps} from '../App';
 
 import {TabView, TabBar} from 'react-native-tab-view';
 
@@ -28,7 +30,7 @@ const determine_icon = (rating) => {
     }
 };
 
-export default class pvpDetailsScreen extends React.Component {
+class pvpDetailsScreen extends React.Component {
 
     static navigationOptions = {
         drawerLabel: 'PvP',
@@ -37,11 +39,11 @@ export default class pvpDetailsScreen extends React.Component {
   constructor(props){
       super(props);
       this.state ={
-        pvp : {},
-        twos : {},
-        rbgs : {},
-        threes : {},
-        images: [],
+        // pvp : {},
+        // twos : {},
+        // rbgs : {},
+        // threes : {},
+        // images: [],
         index : 0,
           routes: [
 
@@ -158,6 +160,8 @@ export default class pvpDetailsScreen extends React.Component {
     }
 
 }
+
+export default connect(mapStateToProps)(pvpDetailsScreen)
 
 const styles = StyleSheet.create({
     container: {

@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {DrawerActions} from "react-native"
+import {connect} from 'react-redux';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail} from '../services/redux/actionCreators';
+import {mapStateToProps} from '../services/redux/primary';
 
 var raceDict = {
 
@@ -16,7 +19,7 @@ var raceDict = {
     9: "Goblin",
     10: "Blood Elf",
     11: "Draenei",
-    12: "Fel Orc!",
+    12: "Fel Orc",
     13: "Naga",
     14: "Broken",
     15: "Skeleton",
@@ -57,40 +60,40 @@ var classDict = {
     12: "Demon Hunter",
 };
 
-export default class characterDetailScreen extends React.Component {
+class characterDetailScreen extends React.Component {
 
     constructor(props){
         super(props);
-        this.state ={
-            isLoading: true,
-            isError: false,
-            name : "",
-            realm : "",
-            class : "",
-            race : "",
-            gender : "",
-            level : "",
-            thumbnail : "",
-            faction : "",
-            totalHonorableKills : "",
-            photos : "",
-            screen : "",
-            pvp: {},
-        }
+        // this.state ={
+        //     isLoading: true,
+        //     isError: false,
+        //     name : "",
+        //     realm : "",
+        //     class : "",
+        //     race : "",
+        //     gender : "",
+        //     level : "",
+        //     thumbnail : "",
+        //     faction : "",
+        //     totalHonorableKills : "",
+        //     photos : "",
+        //     screen : "",
+        //     pvp: {},
+        // }
     }
 
     async componentDidMount(){
-        const {navigation} = this.props;
-        this.state.name = navigation.getParam('characterName', '');
-        this.state.realm = navigation.getParam('realm', '');
-        console.log(this.state.name);
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.state.realm+'/'+this.state.name+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        // const {navigation} = this.props;
+        // this.state.name = navigation.getParam('characterName', '');
+        // this.state.realm = navigation.getParam('realm', '');
+        console.log(this.props.name + this.props.realm + 'HERE');
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.charName+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         const response = await this.dataCall(characterURI);
 
-        console.log(this.state.dataSource.pvp);
+        //console.log(this.state.dataSource.pvp);
         //this.state.thumbnail = imageURI;
-        console.log("image URI is: "+ this.state.thumbnail);
+        console.log("image URI is: "+ this.props.thumbnail);
 
 
     }
@@ -115,25 +118,39 @@ export default class characterDetailScreen extends React.Component {
         if(responseStatus){
             let parsedJson = await response.json();
             //console.log(parsedJson);
-            this.setState({dataSource: parsedJson, isLoading: false, isError: false});
+            // this.setState({dataSource: parsedJson, isLoading: false, isError: false});
+            // updateCharacter(parsedJson.name);
+            // updateRealm(parsedJson.realm);
+            console.log(parsedJson.thumbnail);
+            var thumbnail_replacer = parsedJson.thumbnail;
+            thumbnail_replacer = thumbnail_replacer.replace("avatar", "main");
+            updateThumbnail(thumbnail_replacer);
+            updateIsLoading(false);
+            updateIsError(false);
+            
+            console.log('http://render-us.worldofwarcraft.com/character/'+ this.props.thumbnail);
+            //updateThumbnail(this.props.thumbnail.replace("avatar", "main"));
         }
         else{
-            this.setState({dataSource: "Error!!! Please try again!", isLoading: false, isError: true})
+            // this.setState({dataSource: "Error!!! Please try again!", isLoading: false, isError: true})
+            updateIsLoading(false);
+            updateIsError(true);
         }
 
         //Change ID's to human readable text
 
-        this.setState({race:raceDict[this.state.dataSource.race]});
-        this.setState({class:classDict[this.state.dataSource.class]});
+        //this.setState({race:raceDict[this.state.dataSource.race]});
+        //this.setState({class:classDict[this.state.dataSource.class]});
 
         //TOGGLE THIS LINE TO CHANGE AVATAR IMAGE TO INSET or BIG PHOTO FROM AVATAR (tiny square)
 
         //this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "inset");
-        this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "main");
-
-        var imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail;
-
-        this.setState({thumbnail: imageURI});
+        // this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "main");
+        
+        // var imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail;
+        // updateThumbnail(imageURI);
+        
+        // this.setState({thumbnail: imageURI});
     };
 
 
@@ -141,7 +158,7 @@ export default class characterDetailScreen extends React.Component {
 
         <Drawer/>
 
-        if(this.state.isLoading){
+        if(this.props.isLoading){
             return(
                 <View style={{flex: 1, padding: 20}}>
                     <Text>Loading...</Text>
@@ -149,7 +166,7 @@ export default class characterDetailScreen extends React.Component {
             )
         }
 
-        else if(this.state.isError){
+        else if(this.props.isError){
             return(
                 <View style={{flex: 1, padding: 20}}>
                     <Text>Error! Please try again!</Text>
@@ -165,12 +182,12 @@ export default class characterDetailScreen extends React.Component {
                     color="#841584"
                     accessibilityLabel="Learn more about this purple button"
                 />
-                <Text style={{fontWeight: 'bold', color: '#FFFFFF'}}>{this.state.dataSource.name} </Text>
-                <Text style={{color: '#FFFFFF'}}>{this.state.dataSource.realm}</Text>
-                <Text style={{fontWeight: 'italics', color: '#FFFFFF'}}> Level {this.state.dataSource.level} {this.state.race} {this.state.class}</Text>
+                <Text style={{fontWeight: 'bold', color: '#FFFFFF'}}>{this.props.charName} </Text>
+                <Text style={{color: '#FFFFFF'}}>{this.props.realm}!</Text>
+                
                 <Image
                     style={{width: 400, height: 600}}
-                    source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.state.dataSource.thumbnail}}
+                    source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail}}
                 />
             </View>
         );
@@ -178,6 +195,8 @@ export default class characterDetailScreen extends React.Component {
     }
 
 }
+
+export default connect(mapStateToProps)(characterDetailScreen)
 
 const styles = StyleSheet.create({
     container: {
