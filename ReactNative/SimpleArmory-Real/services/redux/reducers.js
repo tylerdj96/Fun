@@ -6,8 +6,13 @@ export function reducer(state=initialState, action){
         case 'UPDATE_CHAR':
             return{
                 ...state,
-                //charName: state.charName + "butt!"
-                charName: action.value
+                character: {
+                name: action.value.name,
+                race: action.value.race,
+                level: action.value.level,
+                class: action.value.class,
+                totalHonorableKills: action.value.totalHonorableKills
+                }
             };
         case 'UPDATE_REALM':
             return{
@@ -19,15 +24,24 @@ export function reducer(state=initialState, action){
                 ...state,
                 realmList: action.value
             };    
-        // case 'UPDATE_PVP':
-        //     return{
-        //         ...state,
-        //         PVP.twos: action.twos
-        //     }; 
+        case 'UPDATE_PVP':
+            return{
+                ...state,
+                PVP: {
+                    twos: action.value.pvp.brackets.ARENA_BRACKET_2v2,
+                    threes: action.value.pvp.brackets.ARENA_BRACKET_3v3,
+                    rbgs: action.value.pvp.brackets.ARENA_BRACKET_RBG
+                }    
+            }; 
         case 'LOADING':
             return{
                 ...state,
                 isLoading: action.value
+            };
+        case 'TEST':
+            return{
+                ...state,
+                test: action.value
             };
         case 'ERROR':
             return{
@@ -44,6 +58,11 @@ export function reducer(state=initialState, action){
                 ...state,
                 thumbnail: action.value
             };
+        case 'IMAGES':
+            return{
+                ...state,
+                images: action.value
+            };    
 
         default:
             return state;

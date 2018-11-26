@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {DrawerActions} from "react-native"
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail} from '../services/redux/actionCreators';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 
 var raceDict = {
@@ -64,45 +64,38 @@ class characterDetailScreen extends React.Component {
 
     constructor(props){
         super(props);
-        // this.state ={
+        this.state ={
         //     isLoading: true,
         //     isError: false,
         //     name : "",
         //     realm : "",
-        //     class : "",
-        //     race : "",
+             class : "",
+             race : "",
         //     gender : "",
-        //     level : "",
+             level : "",
         //     thumbnail : "",
         //     faction : "",
-        //     totalHonorableKills : "",
+             totalHonorableKills : "",
         //     photos : "",
         //     screen : "",
         //     pvp: {},
-        // }
+       }
     }
 
     async componentDidMount(){
-        // const {navigation} = this.props;
-        // this.state.name = navigation.getParam('characterName', '');
-        // this.state.realm = navigation.getParam('realm', '');
-        console.log(this.props.name + this.props.realm + 'HERE');
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.charName+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         const response = await this.dataCall(characterURI);
-
-        //console.log(this.state.dataSource.pvp);
-        //this.state.thumbnail = imageURI;
-        console.log("image URI is: "+ this.props.thumbnail);
 
 
     }
 
-    static navigationOptions = ({ navigation }) => {
-        return {
-            title: 'Character',
-        };
-    };
+    // static navigationOptions = ({ navigation }) => {
+    //     return {
+    //         title: 'Character',
+    //     };
+    // };
 
     onPressMe = () => {
         console.log(this.state.screen);
@@ -117,30 +110,47 @@ class characterDetailScreen extends React.Component {
         let responseStatus = await response.ok;
         if(responseStatus){
             let parsedJson = await response.json();
-            //console.log(parsedJson);
-            // this.setState({dataSource: parsedJson, isLoading: false, isError: false});
-            // updateCharacter(parsedJson.name);
-            // updateRealm(parsedJson.realm);
-            console.log(parsedJson.thumbnail);
+
             var thumbnail_replacer = parsedJson.thumbnail;
             thumbnail_replacer = thumbnail_replacer.replace("avatar", "main");
             updateThumbnail(thumbnail_replacer);
+
+            updateCharacter(parsedJson);
+            updatePVP(parsedJson);
+            
+
+            var images = [];
+            var image1 = require('../assets/UI_RankedPvP_01.png');
+            var image2 = require('../assets/UI_RankedPvP_02.png');
+            var image3 = require('../assets/UI_RankedPvP_03.png');
+            var image4 = require('../assets/UI_RankedPvP_04.png');
+            var image5 = require('../assets/UI_RankedPvP_05.png');
+            var image6 = require('../assets/UI_RankedPvP_06.png');
+            var image7 = require('../assets/UI_RankedPvP_07.png');
+
+            images.push(image1);
+            images.push(image2);
+            images.push(image3);
+            images.push(image4);
+            images.push(image5);
+            images.push(image6);
+            images.push(image7);
+
+            updateImages(images);
+
             updateIsLoading(false);
             updateIsError(false);
-            
-            console.log('http://render-us.worldofwarcraft.com/character/'+ this.props.thumbnail);
-            //updateThumbnail(this.props.thumbnail.replace("avatar", "main"));
         }
         else{
-            // this.setState({dataSource: "Error!!! Please try again!", isLoading: false, isError: true})
+            
             updateIsLoading(false);
             updateIsError(true);
         }
 
         //Change ID's to human readable text
 
-        //this.setState({race:raceDict[this.state.dataSource.race]});
-        //this.setState({class:classDict[this.state.dataSource.class]});
+        this.setState({race:raceDict[this.props.character.race]});
+        this.setState({class:classDict[this.props.character.class]});
 
         //TOGGLE THIS LINE TO CHANGE AVATAR IMAGE TO INSET or BIG PHOTO FROM AVATAR (tiny square)
 
@@ -176,15 +186,9 @@ class characterDetailScreen extends React.Component {
 
         return(
             <View style={[styles.page, {backgroundColor: '#000000'}]}>
-                <Button
-                    onPress={this.onPressMe}
-                    title="Player VS Player"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"
-                />
-                <Text style={{fontWeight: 'bold', color: '#FFFFFF'}}>{this.props.charName} </Text>
-                <Text style={{color: '#FFFFFF'}}>{this.props.realm}!</Text>
-                
+                <Text style={{fontWeight: 'bold', color: '#FFFFFF'}}>{this.props.character.name} </Text>
+                <Text style={{color: '#FFFFFF'}}>Level {this.props.character.level} {this.state.race} {this.state.class}</Text>
+                <Text style={{color: '#FFFFFF'}}>{this.props.realm}</Text>
                 <Image
                     style={{width: 400, height: 600}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail}}
@@ -219,21 +223,5 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
 });
-
-// export default DrawerNavigator({
-//     Character: {
-//         screen: characterDetailScreen
-//     },
-//     PvP: {
-//         screen: pvpDetailsScreen,
-//     },
-//     Mounts: {
-//         screen: mountScreen,
-//     },
-// }, {
-//     drawerPosition: 'right',
-//     initialRouteName: 'Character',
-//     drawerWidth : 200,
-// });
 
 

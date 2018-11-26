@@ -1,6 +1,6 @@
 import React from "react"
 import {View, Text} from 'react-native'
-import {Stack} from "./services/navigators.js"
+import {Stack, Drawer, pvpTabs} from "./services/navigators.js"
 import {Provider} from "react-redux"
 import {store} from './services/redux/primary'
 

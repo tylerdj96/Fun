@@ -14,7 +14,6 @@ export function updateRealm(value){
     };
     store.dispatch(action);
 }
-
 export function updateRealmList(value){
     const action = {
         type: 'UPDATE_REALM_LIST',
@@ -25,6 +24,13 @@ export function updateRealmList(value){
 export function updatePVP(value){
     const action = {
         type: 'UPDATE_PVP',
+        value
+    };
+    store.dispatch(action);
+}
+export function updateImages(value){
+    const action = {
+        type: 'IMAGES',
         value
     };
     store.dispatch(action);
@@ -54,6 +60,14 @@ export function updateIsError(value){
 export function updateThumbnail(value){
     const action ={
         type: 'THUMBNAIL',
+        value
+    };
+    store.dispatch(action);
+}
+
+export function updateTest(value){
+    const action ={
+        type: 'TEST',
         value
     };
     store.dispatch(action);

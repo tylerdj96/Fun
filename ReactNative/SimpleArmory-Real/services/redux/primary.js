@@ -2,7 +2,13 @@ import {createStore} from 'redux'
 import {reducer} from './reducers'
 
 export const initialState = {
-    charName: "",
+    character: {
+        name: "",
+        race: "",
+        level: "",
+        class: "",
+        totalHonorableKills: "",
+    },
     thumbnail: "",
     realm: "Select a realm!",
     realmList: [],
@@ -10,11 +16,12 @@ export const initialState = {
         twos : {},
         rbgs : {},
         threes : {},
-        images: []
+        
     },
     Mounts: {
 
     },
+    images: [],
     isLoading: true,
     isError: false,
     visible: false,
@@ -23,13 +30,15 @@ export const initialState = {
 export function mapStateToProps(state){
     return{
         realm: state.realm,
-        charName: state.charName,
+        character: state.character,
         visible: state.visible,
         realmList: state.realmList,
         isLoading: state.isLoading,
         isError: state.isError,
         PVP: state.PVP,
         thumbnail: state.thumbnail,
+        images: state.images,
+        test: state.test,
     }
 }
 
