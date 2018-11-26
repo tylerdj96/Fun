@@ -1,4 +1,6 @@
 import {createDrawerNavigator, createStackNavigator, DrawerActions, createMaterialTopTabNavigator} from 'react-navigation'
+import React from 'react';
+import { StyleSheet, Text, View, Button, Image, Picker, TouchableOpacity, Icon } from 'react-native';
 
 import HomeScreen from '../screens/homeScreen.js'
 import characterDetailScreen from '../screens/characterDetailScreen.js'
@@ -8,6 +10,18 @@ import mountScreen from '../screens/mountScreen.js'
 
 //Tab navigators
 import {twosTabC, threesTabC, rbgTabC} from '../screens/pvpDetailsTabs.js'
+
+import { NavigationEvents, NavigationActions, NavigationProvider} from 'react-navigation';
+
+// const MenuButton = (props)=>{
+//     return(
+//         <Button>
+//             <TouchableOpacity onPress={() => {this.props.navigation.dispatch(DrawerActions.toggleDrawer())} }>
+//                 <Icon name="bars" style={{color: 'black', padding: 10, marginLeft:10, fontSize: 20}}/>
+//             </TouchableOpacity>
+//         </Button>
+//     );
+// };
 
 export const pvpTabs = createMaterialTopTabNavigator({
     '2v2': {
@@ -26,7 +40,7 @@ export const pvpTabs = createMaterialTopTabNavigator({
 
 export const Drawer = createDrawerNavigator({
     Character: {
-        screen: characterDetailScreen
+        screen: characterDetailScreen,
     },
     PvP: {
         screen: pvpTabs
@@ -35,20 +49,26 @@ export const Drawer = createDrawerNavigator({
         screen: mountScreen
     },
     },
-{ drawerPosition: 'right'}
+{ drawerPosition: 'right'
+
+    }
 
 );
+
+
 
 export const Stack = createStackNavigator({
         Home: {
             screen: HomeScreen
         },
         Drawer: {
-            screen : Drawer
+            screen : Drawer,
         },
     },
     {
-        initialRouteName: 'Home'
-    });
+        initialRouteName: 'Home',
+
+        }
+        );
 
 

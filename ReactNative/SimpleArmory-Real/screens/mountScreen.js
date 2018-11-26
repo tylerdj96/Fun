@@ -1,34 +1,30 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
+import {FlatList, StyleSheet, Text, View, Image} from 'react-native';
+import {connect} from 'react-redux';
+import {mapStateToProps} from '../services/redux/primary';
+import {updateIsLoading} from '../services/redux/actionCreators';
+import { ListItem } from 'react-native-elements'
 
-export default class mountScreen extends React.Component {
+
+var rarityDict = {1: "Common", 2: "Uncommon", 3: "Rare", 4: "Epic"};
+
+class mountScreen extends React.Component {
 
     constructor(props){
         super(props);
-        this.state ={ isLoading: true}
     }
 
-    onPressMe = () => {
-        console.log("Pressed!!!")
-    }
 
     componentDidMount(){
-        return fetch('https://us.api.battle.net/wow/mount/?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    isLoading: false,
-                    dataSource: responseJson.mountScreen
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        updateIsLoading(true);
+        updateIsLoading(false);
     }
 
     render() {
 
-        if(this.state.isLoading){
+        console.log(this.props.mounts.collected);
+
+        if(this.props.isLoading){
             return(
                 <View style={{flex: 1, padding: 20}}>
                     <Text>Updating...</Text>
@@ -39,9 +35,15 @@ export default class mountScreen extends React.Component {
         return(
             <View style={{flex: 1, paddingTop:20}}>
                 <FlatList
-                    data={this.state.dataSource}
-                    renderItem={({item}) => <Text>{item.name}</Text>}
+                    data={this.props.mounts.collected}
+                    renderItem={({ item }) => (
 
+                        <ListItem
+                        title={`${item.name}`}
+                        subtitle={rarityDict[item.qualityId]}
+                        avatar={{ uri: 'https://wow.zamimg.com/images/wow/icons/medium/' + item.icon +'.jpg' }}
+                        />
+                    )}
                 />
             </View>
         );
@@ -49,11 +51,11 @@ export default class mountScreen extends React.Component {
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+export default connect(mapStateToProps)(mountScreen)
+
+
+// <View>
+// <Image style={{width: 56, height: 56}}
+// source={{uri: 'https://wow.zamimg.com/images/wow/icons/medium/' + item.icon +'.jpg'}}/>
+// <Text>{item.name}</Text>
+// </View>

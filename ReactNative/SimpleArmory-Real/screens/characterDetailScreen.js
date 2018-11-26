@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
-import {DrawerActions} from "react-native"
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages} from '../services/redux/actionCreators';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
+import {Icon} from "../services/navigators";
+import { DrawerActions } from 'react-navigation-drawer';
 
 var raceDict = {
 
@@ -65,45 +66,37 @@ class characterDetailScreen extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-        //     isLoading: true,
-        //     isError: false,
-        //     name : "",
-        //     realm : "",
+
              class : "",
              race : "",
-        //     gender : "",
-             level : "",
-        //     thumbnail : "",
-        //     faction : "",
-             totalHonorableKills : "",
-        //     photos : "",
-        //     screen : "",
-        //     pvp: {},
+
        }
     }
 
+    // static navigationOptions =
+    //     {
+    //         title: 'Character Details',
+    //
+    //         headerStyle: {
+    //
+    //             backgroundColor: '#FF9800'
+    //
+    //         },
+    //
+    //         headerTintColor: '#000',
+    //
+    //     };
+
     async componentDidMount(){
 
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         const response = await this.dataCall(characterURI);
 
 
     }
 
-    // static navigationOptions = ({ navigation }) => {
-    //     return {
-    //         title: 'Character',
-    //     };
-    // };
 
-    onPressMe = () => {
-        console.log(this.state.screen);
-        this.props.navigation.navigate('PvP',
-            {
-            pvp: this.state.dataSource.pvp,
-            })
-    };
 
     dataCall = async (characterURI) => {
         let response = await fetch(characterURI);
@@ -114,9 +107,13 @@ class characterDetailScreen extends React.Component {
             var thumbnail_replacer = parsedJson.thumbnail;
             thumbnail_replacer = thumbnail_replacer.replace("avatar", "main");
             updateThumbnail(thumbnail_replacer);
+            console.log(this.props.thumbnail);
 
             updateCharacter(parsedJson);
+            updateMounts(parsedJson);
             updatePVP(parsedJson);
+
+            console.log(this.props.mounts.collected[0]);
             
 
             var images = [];
@@ -152,21 +149,10 @@ class characterDetailScreen extends React.Component {
         this.setState({race:raceDict[this.props.character.race]});
         this.setState({class:classDict[this.props.character.class]});
 
-        //TOGGLE THIS LINE TO CHANGE AVATAR IMAGE TO INSET or BIG PHOTO FROM AVATAR (tiny square)
-
-        //this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "inset");
-        // this.state.dataSource.thumbnail = this.state.dataSource.thumbnail.replace("avatar", "main");
-        
-        // var imageURI = 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail;
-        // updateThumbnail(imageURI);
-        
-        // this.setState({thumbnail: imageURI});
     };
 
 
     render() {
-
-        <Drawer/>
 
         if(this.props.isLoading){
             return(
@@ -192,6 +178,12 @@ class characterDetailScreen extends React.Component {
                 <Image
                     style={{width: 400, height: 600}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail}}
+                />
+                <Button
+                    onPress={() => {
+                        this.props.navigation.dispatch(DrawerActions.toggleDrawer())
+                    }}
+                    title="Press Me"
                 />
             </View>
         );

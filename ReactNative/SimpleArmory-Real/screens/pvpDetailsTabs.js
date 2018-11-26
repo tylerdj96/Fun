@@ -60,7 +60,7 @@ const renderScene = ( rating, image_array ) => {
             image_info.icon_text = "Gladiator";
             return image_info;
     }
-}
+};
 
 class twosTab extends React.Component {
 

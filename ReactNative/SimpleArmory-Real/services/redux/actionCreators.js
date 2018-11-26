@@ -65,6 +65,14 @@ export function updateThumbnail(value){
     store.dispatch(action);
 }
 
+export function updateMounts(value){
+    const action = {
+        type: 'MOUNTS',
+        value
+    };
+    store.dispatch(action);
+}
+
 export function updateTest(value){
     const action ={
         type: 'TEST',

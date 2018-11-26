@@ -18,8 +18,10 @@ export const initialState = {
         threes : {},
         
     },
-    Mounts: {
-
+    mounts: {
+        numCollected: "",
+        numNotCollected: "",
+        collected: []
     },
     images: [],
     isLoading: true,
@@ -39,6 +41,7 @@ export function mapStateToProps(state){
         thumbnail: state.thumbnail,
         images: state.images,
         test: state.test,
+        mounts: state.mounts
     }
 }
 

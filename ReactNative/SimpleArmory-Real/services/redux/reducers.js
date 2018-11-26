@@ -62,7 +62,16 @@ export function reducer(state=initialState, action){
             return{
                 ...state,
                 images: action.value
-            };    
+            };
+        case 'MOUNTS':
+            return{
+                ...state,
+                mounts: {
+                    collected: action.value.mounts.collected,
+                    numCollected: action.value.mounts.numCollected,
+                    numNotCollected: action.value.mounts.numNotCollected
+                }
+            };
 
         default:
             return state;
