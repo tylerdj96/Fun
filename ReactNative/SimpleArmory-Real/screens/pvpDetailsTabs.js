@@ -1,8 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image } from 'react-native';
+import {StyleSheet, View, Image } from 'react-native';
 import {connect} from 'react-redux';
 import {mapStateToProps} from '../services/redux/primary';
 import {updateIsLoading} from '../services/redux/actionCreators';
+import {
+    Button,
+    Text, Container,
+    Body, Header, Icon, Left, Right, Content
+} from 'native-base';
 
 const determine_icon = (rating) => {
     if(rating==0){
@@ -94,8 +99,24 @@ class twosTab extends React.Component {
         else{
 
         return (
-            <View style={[styles.page, {backgroundColor: '#000000'}]}>
-            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}></Image>
+            <Container style={{backgroundColor: '#000000'}}>
+            <Header>
+                <Left>
+                    <Button transparent     onPress = {() => {
+                        this.props.navigation.navigate('Home')
+                    }}>
+                        <Icon name='home' />
+                    </Button>
+                </Left>
+                <Body><Text>PvP</Text></Body>
+                <Right>
+                    <Button transparent onPress={() => {this.props.navigation.openDrawer()}}>
+                        <Icon name='menu'/>
+                    </Button>
+                </Right>
+            </Header>
+                <Content contentContainerStyle={{alignItems: 'center', padding: 25}}>
+            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}/>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold'}}>{this.state.image_info.icon_text}</Text>
             <Text style ={{color: '#FFFFFF'}}>Rating: {this.props.PVP.twos.rating}{"\n"}</Text>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Weekly</Text>
@@ -104,7 +125,8 @@ class twosTab extends React.Component {
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Season</Text>
             <Text style ={{color: '#FFFFFF'}}>W: {this.props.PVP.twos.seasonWon} L: {this.props.PVP.twos.seasonLost} Total: {this.props.PVP.twos.seasonPlayed}</Text>
             <Text style = {{color: '#FFFFFF', fontStyle: 'italic'}}>{((this.props.PVP.twos.seasonWon/this.props.PVP.twos.seasonPlayed)*100).toFixed(2)}%</Text>
-            </View> 
+                </Content>
+            </Container>
             );
         
         }
@@ -144,8 +166,24 @@ class threesTab extends React.Component{
           else{
   
           return (
-            <View style={[styles.page, {backgroundColor: '#000000'}]}>
-            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}></Image>
+            <Container style={{backgroundColor: '#000000'}}>
+                <Header>
+                    <Left>
+                        <Button transparent     onPress = {() => {
+                            this.props.navigation.navigate('Home')
+                        }}>
+                            <Icon name='home' />
+                        </Button>
+                    </Left>
+                    <Body><Text>PvP</Text></Body>
+                    <Right>
+                        <Button transparent onPress={() => {this.props.navigation.openDrawer()}}>
+                            <Icon name='menu'/>
+                        </Button>
+                    </Right>
+                </Header>
+                <Content contentContainerStyle={{alignItems: 'center', padding: 25}}>
+            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}/>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold'}}>{this.state.image_info.icon_text}</Text>
             <Text style ={{color: '#FFFFFF'}}>Rating: {this.props.PVP.threes.rating}{"\n"}</Text>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Weekly</Text>
@@ -154,7 +192,8 @@ class threesTab extends React.Component{
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Season</Text>
             <Text style ={{color: '#FFFFFF'}}>W: {this.props.PVP.threes.seasonWon} L: {this.props.PVP.threes.seasonLost} Total: {this.props.PVP.threes.seasonPlayed}</Text>
             <Text style = {{color: '#FFFFFF', fontStyle: 'italic'}}>{((this.props.PVP.threes.seasonWon/this.props.PVP.threes.seasonPlayed)*100).toFixed(2)}%</Text>
-            </View>
+                </Content>
+            </Container>
               );
           
           }
@@ -194,8 +233,24 @@ class rbgTab extends React.Component{
           else{
   
           return (
-            <View style={[styles.page, {backgroundColor: '#000000'}]}>
-            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}></Image>
+            <Container style={{backgroundColor: '#000000'}}>
+                <Header>
+                    <Left>
+                        <Button transparent     onPress = {() => {
+                            this.props.navigation.navigate('Home')
+                        }}>
+                            <Icon name='home' />
+                        </Button>
+                    </Left>
+                    <Body><Text>PvP</Text></Body>
+                    <Right>
+                        <Button transparent onPress={() => {this.props.navigation.openDrawer()}}>
+                            <Icon name='menu'/>
+                        </Button>
+                    </Right>
+                </Header>
+                <Content contentContainerStyle={{alignItems: 'center', padding: 25}}>
+            <Image source={this.state.image_info.pvpimage} style={{width: 250, height: 250}}/>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold'}}>{this.state.image_info.icon_text}</Text>
             <Text style ={{color: '#FFFFFF'}}>Rating: {this.props.PVP.rbgs.rating}{"\n"}</Text>
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Weekly</Text>
@@ -204,7 +259,8 @@ class rbgTab extends React.Component{
             <Text style ={{color: '#FFFFFF', fontWeight: 'bold', textDecorationLine:'underline'}}>Season</Text>
             <Text style ={{color: '#FFFFFF'}}>W: {this.props.PVP.rbgs.seasonWon} L: {this.props.PVP.rbgs.seasonLost} Total: {this.props.PVP.rbgs.seasonPlayed}</Text>
             <Text style = {{color: '#FFFFFF', fontStyle: 'italic'}}>{((this.props.PVP.rbgs.seasonWon/this.props.PVP.rbgs.seasonPlayed)*100).toFixed(2)}%</Text>
-            </View>
+                </Content>
+            </Container>
               );
           
           }

@@ -1,11 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, Picker } from 'react-native';
+import { StyleSheet, View, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {connect} from 'react-redux';
 import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
-import {Icon} from "../services/navigators";
+// import {Icon} from "../services/navigators";
 import { DrawerActions } from 'react-navigation-drawer';
+import {
+    Button,
+    Text, Container,
+    Body, Header, Icon, Left, Right, Content, Spinner
+} from 'native-base';
 
 var raceDict = {
 
@@ -91,6 +96,7 @@ class characterDetailScreen extends React.Component {
 
         const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
+        updateIsLoading(true);
         const response = await this.dataCall(characterURI);
 
 
@@ -102,6 +108,9 @@ class characterDetailScreen extends React.Component {
         let response = await fetch(characterURI);
         let responseStatus = await response.ok;
         if(responseStatus){
+
+            updateIsError(false);
+
             let parsedJson = await response.json();
 
             var thumbnail_replacer = parsedJson.thumbnail;
@@ -134,9 +143,6 @@ class characterDetailScreen extends React.Component {
             images.push(image7);
 
             updateImages(images);
-
-            updateIsLoading(false);
-            updateIsError(false);
         }
         else{
             
@@ -149,6 +155,8 @@ class characterDetailScreen extends React.Component {
         this.setState({race:raceDict[this.props.character.race]});
         this.setState({class:classDict[this.props.character.class]});
 
+        updateIsLoading(false);
+
     };
 
 
@@ -156,22 +164,38 @@ class characterDetailScreen extends React.Component {
 
         if(this.props.isLoading){
             return(
-                <View style={{flex: 1, padding: 20}}>
-                    <Text>Loading...</Text>
-                </View>
+                <Container style={{backgroundColor: '#000000'}}>
+                    <Header />
+                    <Content contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
+                        <Spinner color = 'white'/>
+                    </Content>
+                </Container>
             )
         }
 
         else if(this.props.isError){
-            return(
-                <View style={{flex: 1, padding: 20}}>
-                    <Text>Error! Please try again!</Text>
-                </View>
-            )
+            this.props.navigation.navigate('Home');
         }
 
+
         return(
-            <View style={[styles.page, {backgroundColor: '#000000'}]}>
+            <Container style={{backgroundColor: '#000000'}}>
+                <Header>
+                    <Left>
+                        <Button transparent     onPress = {() => {
+                        this.props.navigation.navigate('Home')
+                    }}>
+                            <Icon name='home' />
+                        </Button>
+                    </Left>
+                    <Body><Text>Character Details</Text></Body>
+                    <Right>
+                        <Button transparent onPress={() => {this.props.navigation.openDrawer()}}>
+                            <Icon name='menu'/>
+                        </Button>
+                    </Right>
+                </Header>
+                <Content contentContainerStyle={{alignItems: 'center'}}>
                 <Text style={{fontWeight: 'bold', color: '#FFFFFF'}}>{this.props.character.name} </Text>
                 <Text style={{color: '#FFFFFF'}}>Level {this.props.character.level} {this.state.race} {this.state.class}</Text>
                 <Text style={{color: '#FFFFFF'}}>{this.props.realm}</Text>
@@ -179,13 +203,9 @@ class characterDetailScreen extends React.Component {
                     style={{width: 400, height: 600}}
                     source={{uri: 'http://render-us.worldofwarcraft.com/character/' + this.props.thumbnail}}
                 />
-                <Button
-                    onPress={() => {
-                        this.props.navigation.dispatch(DrawerActions.toggleDrawer())
-                    }}
-                    title="Press Me"
-                />
-            </View>
+                </Content>
+
+            </Container>
         );
 
     }

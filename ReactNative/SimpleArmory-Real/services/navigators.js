@@ -34,7 +34,8 @@ export const pvpTabs = createMaterialTopTabNavigator({
         screen: rbgTabC
     }},
     {
-        initialRouteName: '2v2'
+        initialRouteName: '2v2',
+        tabBarPosition: 'bottom'
     }
 );
 
@@ -49,8 +50,9 @@ export const Drawer = createDrawerNavigator({
         screen: mountScreen
     },
     },
-{ drawerPosition: 'right'
-
+{
+    initialRouteName: 'Character',
+    drawerPosition: 'right'
     }
 
 );
@@ -67,6 +69,7 @@ export const Stack = createStackNavigator({
     },
     {
         initialRouteName: 'Home',
+        navigationOptions:{header: null}
 
         }
         );

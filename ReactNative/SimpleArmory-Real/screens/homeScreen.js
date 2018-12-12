@@ -1,9 +1,16 @@
 import React from "react";
-import {Button, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
 import ModalFilterPicker from "react-native-modal-filter-picker";
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updateVisible, updateRealmList} from '../services/redux/actionCreators';
+import {
+    updateCharacter,
+    updateRealm,
+    updateVisible,
+    updateRealmList,
+    updateIsError
+} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
+import {Button, Icon, Text, Item, Input, Content, Header} from 'native-base'
 
 class HomeScreen extends React.Component {
 
@@ -35,36 +42,41 @@ class HomeScreen extends React.Component {
 
     //REDUX
     onPressMe = () => {
+        updateIsError(false);
         this.props.navigation.navigate('Drawer')
     };
 
     render() {
         const { visible} = this.props.visible;
 
+
+
         return (
-            <View>
-                <Text style={{alignSelf: 'center', fontStyle: 'italic'}}>Welcome to Simple Armory Mobile!</Text>
-                <TouchableOpacity style={styles.button} onPress={this.onShow}>
+            <Content style={{backgroundColor: '#000000'}}>
+                <Header/>
+                <Text style={{alignSelf: 'center', fontStyle: 'italic', color: 'white', padding: 50}}>Welcome to Simple Armory Mobile!</Text>
+
+                <Button iconRight info onPress={this.onShow} style = {{padding: 10, alignSelf:'center'}}>
                     <Text>{this.props.realm}</Text>
-                </TouchableOpacity>
+                    <Icon name='globe'/>
+                </Button>
                 <ModalFilterPicker
                     visible={this.props.visible}
                     onSelect={this.onSelect}
                     onCancel={this.onCancel}
                     options={this.realmListMapper()}
                     />
-                <TextInput
-                    style={{height: 40, borderColor: 'blue', borderWidth: 1}}
-                    onChangeText={(characterName) => updateCharacter({name:characterName, race: "", level: "", class: "", totalHonorableKills: ""})}/>
-                />
-                <Button
-                    onPress={this.onPressMe}
-                    title="Go!"
-                    color="#841584"
-                    accessibilityLabel="Learn more about this purple button"/>
-                
+                <Item rounded>
+                    <Input placeholder="Character Name" placeholderTextColor = '#ffffff66' clearTextOnFocus={true} onChangeText={(characterName) => updateCharacter({name:characterName, race: "", level: "", class: "", totalHonorableKills: ""})} style = {{alignSelf:'center', textAlign: 'center', padding: 10, color: 'white'}}/>
+                </Item>
+                <Button iconRight success onPress={this.onPressMe} style = {{padding: 10, alignSelf:'center'}}>
+                    <Text>Go</Text>
+                    <Icon name='ios-search'/>
+                </Button>
+                <Text style = {[styles.noError, this.props.isError && styles.error]}>Invalid Search. Please Try Again.</Text>
+
                 <Text>{this.props.realm}+{this.props.character.name}</Text>
-            </View>
+            </Content>
         );
     }
 
@@ -100,4 +112,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#DDDDDD',
         padding: 10
     },
+    noError: {
+        color: '#000000',
+    },
+    error:{
+        color: 'red',
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        fontStyle: 'italic',
+        padding: 25
+
+    }
 });
