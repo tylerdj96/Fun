@@ -73,6 +73,14 @@ export function updateMounts(value){
     store.dispatch(action);
 }
 
+export function updateTalents(value){
+    const action = {
+        type: 'TALENTS',
+        value
+    };
+    store.dispatch(action);
+}
+
 export function updateTest(value){
     const action ={
         type: 'TEST',

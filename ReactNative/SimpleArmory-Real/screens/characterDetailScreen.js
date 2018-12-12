@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts} from '../services/redux/actionCreators';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateTalents} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 // import {Icon} from "../services/navigators";
 import { DrawerActions } from 'react-navigation-drawer';
@@ -66,6 +66,12 @@ var classDict = {
     12: "Demon Hunter",
 };
 
+function organizeTalents(talentList) {
+    talentList.sort(function(a,b){
+        return a.tier-b.tier
+    })
+}
+
 class characterDetailScreen extends React.Component {
 
     constructor(props){
@@ -78,27 +84,13 @@ class characterDetailScreen extends React.Component {
        }
     }
 
-    // static navigationOptions =
-    //     {
-    //         title: 'Character Details',
-    //
-    //         headerStyle: {
-    //
-    //             backgroundColor: '#FF9800'
-    //
-    //         },
-    //
-    //         headerTintColor: '#000',
-    //
-    //     };
 
     async componentDidMount(){
 
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts+talents&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         updateIsLoading(true);
         const response = await this.dataCall(characterURI);
-
 
     }
 
@@ -122,8 +114,15 @@ class characterDetailScreen extends React.Component {
             updateMounts(parsedJson);
             updatePVP(parsedJson);
 
-            console.log(this.props.mounts.collected[0]);
-            
+            //API call almost always, if not always, returns talents out of order, so we need to order them /shrug
+            for(var i=0; i<parsedJson.talents.length; i++){
+                if(parsedJson.talents[i].talents !== undefined && parsedJson.talents[i].talents.length > 0){
+                    organizeTalents(parsedJson.talents[i].talents);
+                }
+            }
+
+            updateTalents(parsedJson);
+
 
             var images = [];
             var image1 = require('../assets/UI_RankedPvP_01.png');

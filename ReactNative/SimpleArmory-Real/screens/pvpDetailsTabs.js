@@ -276,27 +276,3 @@ const containerCreator = connect(mapStateToProps);
 export const twosTabC = containerCreator(twosTab)
 export const threesTabC = containerCreator(threesTab);
 export const rbgTabC = containerCreator(rbgTab);
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 20,
-    },
-    tabbar: {
-        backgroundColor: '#222',
-    },
-    page: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    indicator: {
-        backgroundColor: '#ffeb3b',
-    },
-    label: {
-        color: '#fff',
-        fontWeight: '400',
-    },
-});

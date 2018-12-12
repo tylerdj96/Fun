@@ -23,6 +23,13 @@ export const initialState = {
         numNotCollected: "",
         collected: []
     },
+    talents: [
+        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
+        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
+        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
+        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
+
+    ],
     images: [],
     isLoading: true,
     isError: false,
@@ -41,7 +48,8 @@ export function mapStateToProps(state){
         thumbnail: state.thumbnail,
         images: state.images,
         test: state.test,
-        mounts: state.mounts
+        mounts: state.mounts,
+        talents: state.talents
     }
 }
 

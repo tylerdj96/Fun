@@ -73,6 +73,13 @@ export function reducer(state=initialState, action){
                 }
             };
 
+        case 'TALENTS':
+            return{
+                ...state,
+                talents: action.value.talents
+
+            };
+
         default:
             return state;
     }
