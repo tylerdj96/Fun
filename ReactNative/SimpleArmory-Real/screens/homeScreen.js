@@ -7,10 +7,12 @@ import {
     updateRealm,
     updateVisible,
     updateRealmList,
-    updateIsError
+    updateIsError,
+    updateIsLoading
 } from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
-import {Button, Icon, Text, Item, Input, Content, Header} from 'native-base'
+import {Root, Button, Icon, Text, Item, Input, Content, Header, Container, Spinner} from 'native-base'
+import { Font, AppLoading } from "expo";
 
 class HomeScreen extends React.Component {
 
@@ -29,7 +31,7 @@ class HomeScreen extends React.Component {
     };
 
     async componentDidMount(){
-            return await fetch('https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc')
+            return await fetch('https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc', {method: 'GET', body: null})
             .then((response) => response.json())
             .then((responseJson) => {
                 updateRealmList(responseJson.realms)
@@ -38,6 +40,15 @@ class HomeScreen extends React.Component {
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    async componentWillMount() {
+        updateIsLoading(true);
+        await Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+        });
+        updateIsLoading(false);
     }
 
     //REDUX
@@ -50,6 +61,16 @@ class HomeScreen extends React.Component {
         const { visible} = this.props.visible;
 
 
+        if(this.props.isLoading){
+            return(
+                <Container style={{backgroundColor: '#000000'}}>
+                    <Header />
+                    <Content contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
+                        <Spinner color = 'white'/>
+                    </Content>
+                </Container>
+            )
+        }
 
         return (
             <Content style={{backgroundColor: '#000000'}}>
