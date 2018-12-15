@@ -30,6 +30,7 @@ export const initialState = {
         {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
 
     ],
+    achievementPoints: "",
     images: [],
     isLoading: true,
     isError: false,
@@ -49,7 +50,8 @@ export function mapStateToProps(state){
         images: state.images,
         test: state.test,
         mounts: state.mounts,
-        talents: state.talents
+        talents: state.talents,
+        achievementPoints: state.achievementPoints
     }
 }
 

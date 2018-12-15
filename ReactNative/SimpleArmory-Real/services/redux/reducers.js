@@ -80,6 +80,12 @@ export function reducer(state=initialState, action){
 
             };
 
+        case 'ACHIEVEMENTPOINTS':
+            return{
+                ...state,
+                achievementPoints: action.value.achievementPoints
+            };
+
         default:
             return state;
     }

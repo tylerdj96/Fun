@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button, Image, Picker, TouchableOpacity, Icon }
 import HomeScreen from '../screens/homeScreen.js'
 import characterDetailScreen from '../screens/characterDetailScreen.js'
 import talentScreen from '../screens/talentScreen.js'
+import achievementScreen from '../screens/achievementScreen.js'
 
 //Drawers for Char->Other
 import mountScreen from '../screens/mountScreen.js'
@@ -52,6 +53,9 @@ export const Drawer = createDrawerNavigator({
     },
     Talents: {
         screen: talentScreen
+    },
+    Achievements: {
+        screen: achievementScreen
     }
     },
 {
