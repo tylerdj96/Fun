@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateTalents, getAchievementPoints} from '../services/redux/actionCreators';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateTalents, getAchievementPoints, getFeed} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 // import {Icon} from "../services/navigators";
 import { DrawerActions } from 'react-navigation-drawer';
@@ -87,7 +87,7 @@ class characterDetailScreen extends React.Component {
 
     async componentDidMount(){
 
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts+talents+achievements&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts+talents+achievements+feed&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         updateIsLoading(true);
         const response = await this.dataCall(characterURI);
@@ -124,6 +124,8 @@ class characterDetailScreen extends React.Component {
             updateTalents(parsedJson);
 
             getAchievementPoints(parsedJson);
+            
+            getFeed(parsedJson);
 
 
             var images = [];

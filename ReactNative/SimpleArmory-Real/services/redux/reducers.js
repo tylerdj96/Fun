@@ -86,6 +86,12 @@ export function reducer(state=initialState, action){
                 achievementPoints: action.value.achievementPoints
             };
 
+        case 'FEED':
+            return{
+                ...state,
+                feed: action.value.feed
+            }
+
         default:
             return state;
     }

@@ -31,6 +31,7 @@ export const initialState = {
 
     ],
     achievementPoints: "",
+    feed: [],
     images: [],
     isLoading: true,
     isError: false,
@@ -51,7 +52,8 @@ export function mapStateToProps(state){
         test: state.test,
         mounts: state.mounts,
         talents: state.talents,
-        achievementPoints: state.achievementPoints
+        achievementPoints: state.achievementPoints,
+        feed: state.feed
     }
 }
 

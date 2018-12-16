@@ -89,6 +89,14 @@ export function getAchievementPoints(value){
     store.dispatch(action);
 }
 
+export function getFeed(value){
+    const action = {
+        type: 'FEED',
+        value
+    }
+    store.dispatch(action);
+}
+
 export function updateTest(value){
     const action ={
         type: 'TEST',
