@@ -81,7 +81,7 @@ export function updateTalents(value){
     store.dispatch(action);
 }
 
-export function getAchievementPoints(value){
+export function updateAchievementPoints(value){
     const action = {
         type: 'ACHIEVEMENTPOINTS',
         value
@@ -89,7 +89,7 @@ export function getAchievementPoints(value){
     store.dispatch(action);
 }
 
-export function getFeed(value){
+export function updateFeed(value){
     const action = {
         type: 'FEED',
         value

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="29c15a06-28c4-4048-8a44-7f4cd9e7146e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/screens/achievementScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/screens/achievementScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/screens/talentScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/screens/talentScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/services/navigators.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/services/navigators.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/services/redux/actionCreators.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/services/redux/actionCreators.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleArmory-Real/services/redux/primary.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleArmory-Real/services/redux/primary.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,35 +20,35 @@
     <session id="559473065">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="13" />
+          <entry key="js" value="18" />
           <entry key="json" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="13" />
+          <entry key="JavaScript" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="6004" />
+          <entry key="js" value="6759" />
           <entry key="json" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="6004" />
+          <entry key="JavaScript" value="6759" />
         </counts>
       </usages-collector>
     </session>
@@ -52,10 +56,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/App.js">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/homeScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+            <state relative-caret-position="407">
+              <caret line="64" column="44" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -64,10 +68,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/talentScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+            <state relative-caret-position="731">
+              <caret line="67" column="25" lean-forward="true" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -75,13 +79,58 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/primary.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+            <state relative-caret-position="170">
+              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="188" column="81" selection-start-line="188" selection-start-column="81" selection-end-line="188" selection-end-column="81" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/actionCreators.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/reducers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/navigators.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-493">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#122#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,8 +167,13 @@
         <option value="$PROJECT_DIR$/SimpleArmory-Real/services/getCharacterInfo.js" />
         <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/test.js" />
         <option value="$PROJECT_DIR$/SimpleArmory-Real/App.js" />
-        <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js" />
         <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/homeScreen.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/services/redux/actionCreators.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/services/navigators.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/services/redux/primary.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/talentScreen.js" />
+        <option value="$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js" />
       </list>
     </option>
   </component>
@@ -138,7 +192,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="258" />
+    <option name="x" value="396" />
     <option name="y" value="-20" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
@@ -165,12 +219,6 @@
               <item name="ReactNative" type="b2602c69:ProjectViewProjectNode" />
               <item name="ReactNative" type="462c0819:PsiDirectoryNode" />
               <item name="SimpleArmory-Real" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ReactNative" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ReactNative" type="462c0819:PsiDirectoryNode" />
-              <item name="SimpleArmory-Real" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -179,18 +227,25 @@
               <item name="SimpleArmory-Real" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ReactNative" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ReactNative" type="462c0819:PsiDirectoryNode" />
+              <item name="SimpleArmory-Real" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="redux" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542016732197" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545208507874" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -221,11 +276,12 @@
       <workItem from="1540170552256" duration="23895000" />
       <workItem from="1540799552084" duration="225199000" />
       <workItem from="1542011663833" duration="5020000" />
+      <workItem from="1545115485180" duration="6327000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256135000" />
+    <option name="totallyTimeSpent" value="264427000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -247,6 +303,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -281,23 +338,8 @@
     <entry file="file://$PROJECT_DIR$/SimpleArmory/package.json" />
     <entry file="file://$PROJECT_DIR$/SimpleArmory/welcomeScreen.js" />
     <entry file="file://$PROJECT_DIR$/SimpleArmory/App.js" />
-    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/classes/characterCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/getCharacterInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-250">
-          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/classes/characterCard.js" />
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/getCharacterInfo.js" />
     <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/node_modules/react-native/Libraries/react-native/react-native-interface.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -307,8 +349,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/mountScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        <state relative-caret-position="816">
+          <caret line="54" selection-start-line="54" selection-end-line="64" selection-end-column="18" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -322,13 +364,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/test.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/test.js" />
     <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js" />
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsTabs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="277" column="48" selection-start-line="277" selection-start-column="48" selection-end-line="277" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="n#twosTab#0" />
+            <element signature="n#!!block;n#constructor#0;n#twosTab#0" />
+            <element signature="n#!!block;n#componentDidMount#0;n#twosTab#0" />
+            <element signature="n#threesTab#0" />
+            <element signature="n#rbgTab#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/navigators.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-493">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/reducers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/actionCreators.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/services/redux/primary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/homeScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="64" column="44" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/talentScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="67" column="25" lean-forward="true" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -337,18 +454,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/characterDetailScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="62" column="46" lean-forward="true" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleArmory-Real/screens/pvpDetailsScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+        <state relative-caret-position="284">
+          <caret line="188" column="81" selection-start-line="188" selection-start-column="81" selection-end-line="188" selection-end-column="81" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

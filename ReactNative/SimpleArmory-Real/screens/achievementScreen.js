@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Image, Picker, FlatList} from 'react-native';
 import {connect} from 'react-redux';
-import {updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, getAchievementPoints, getFeed} from '../services/redux/actionCreators';
+import {updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateAchievementPoints, updateFeed} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 import { DrawerActions } from 'react-navigation-drawer';
 import {

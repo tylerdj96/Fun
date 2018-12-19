@@ -24,10 +24,6 @@ export const initialState = {
         collected: []
     },
     talents: [
-        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
-        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
-        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
-        {selected: false, talents:[{tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}, {tier: "", column: "", spell:{name: "", icon:"", description:""}}], spec:{name:"", role:"", icon:""}},
 
     ],
     achievementPoints: "",
