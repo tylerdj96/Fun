@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "SimpleArmory-Real",
-    "description": "A remake of Simple Armory for Mobile",
-    "slug": "SimpleArmory-Real",
+    "name": "SimpleArmory-Real - Working",
+    "description": "A remake of Simple Armory for Mobile, incomplete edition",
+    "slug": "simplearmory-real_bugs",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": [
