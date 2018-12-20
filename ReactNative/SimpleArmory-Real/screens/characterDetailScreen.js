@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Picker } from 'react-native';
 import {Drawer} from "../services/navigators.js"
 import {connect} from 'react-redux';
-import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateTalents, getAchievementPoints, getFeed} from '../services/redux/actionCreators';
+import {updateCharacter, updateRealm, updatePVP, updateVisible, updateRealmList, updateIsLoading, updateIsError, updateThumbnail, updateImages, updateMounts, updateTalents, updateAchievementPoints, updateFeed} from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 // import {Icon} from "../services/navigators";
 import { DrawerActions } from 'react-navigation-drawer';
@@ -130,9 +130,9 @@ class characterDetailScreen extends React.Component {
 
             updateTalents(parsedJson);
 
-            getAchievementPoints(parsedJson);
+            updateAchievementPoints(parsedJson);
             
-            getFeed(parsedJson);
+            updateFeed(parsedJson);
 
 
             var images = [];

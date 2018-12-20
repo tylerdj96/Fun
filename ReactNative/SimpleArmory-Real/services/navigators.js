@@ -13,18 +13,6 @@ import mountScreen from '../screens/mountScreen.js'
 //Tab navigators
 import {twosTabC, threesTabC, rbgTabC} from '../screens/pvpDetailsTabs.js'
 
-import { NavigationEvents, NavigationActions, NavigationProvider} from 'react-navigation';
-
-// const MenuButton = (props)=>{
-//     return(
-//         <Button>
-//             <TouchableOpacity onPress={() => {this.props.navigation.dispatch(DrawerActions.toggleDrawer())} }>
-//                 <Icon name="bars" style={{color: 'black', padding: 10, marginLeft:10, fontSize: 20}}/>
-//             </TouchableOpacity>
-//         </Button>
-//     );
-// };
-
 export const pvpTabs = createMaterialTopTabNavigator({
     '2v2': {
         screen: twosTabC
