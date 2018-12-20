@@ -90,6 +90,7 @@ class characterDetailScreen extends React.Component {
         const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts+talents+achievements+feed&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
 
         updateIsLoading(true);
+
         const response = await this.dataCall(characterURI);
 
     }
@@ -99,7 +100,7 @@ class characterDetailScreen extends React.Component {
     dataCall = async (characterURI) => {
         let response = await fetch(characterURI);
         let responseStatus = await response.ok;
-        if(responseStatus){
+        if (responseStatus) {
 
             updateIsError(false);
 
@@ -113,6 +114,12 @@ class characterDetailScreen extends React.Component {
             updateCharacter(parsedJson);
             updateMounts(parsedJson);
             updatePVP(parsedJson);
+
+            const localDBURI = 'http://192.168.50.148:4501/SendPlayerData?PlayerName=' + this.props.character.name + '&ServerName=' + this.props.realm + '&twos=' + this.props.PVP.twos.rating + '&threes=' + this.props.PVP.threes.rating;
+
+            console.log(localDBURI);
+
+            await fetch(localDBURI);
 
             //API call almost always, if not always, returns talents out of order, so we need to order them /shrug
             for(var i=0; i<parsedJson.talents.length; i++){
