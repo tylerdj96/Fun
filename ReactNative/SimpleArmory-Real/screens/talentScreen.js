@@ -77,13 +77,14 @@ class talentScreen extends React.Component {
                     <Text style={{alignItems: 'center', color: 'white', fontWeight: 'bold'}}>{this.props.talents[this.state.specNumber].spec.name}</Text>
                     <FlatList
                         data={this.props.talents[this.state.specNumber].talents}
-                        renderItem={({ item }) => (
+                        renderItem={({ item, index }) => (
 
                             <ListItem
                                 title={item.spell.name}
                                 hideChevron={true}
                                 titleStyle={{ alignItems: 'center', justifyContent:'center', color: 'white'}}
                                 containerStyle={{ alignItems: 'center', justifyContent:'center'}}
+                                onPress={() => Linking.openURL('https://www.wowhead.com/spell='+this.props.talents[this.state.specNumber].talents[index].spell.id)}
                                 avatar={{ uri: 'https://wow.zamimg.com/images/wow/icons/medium/' + item.spell.icon +'.jpg' }}
                             />
                         )}
