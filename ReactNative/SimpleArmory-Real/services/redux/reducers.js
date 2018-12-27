@@ -90,7 +90,13 @@ export function reducer(state=initialState, action){
             return{
                 ...state,
                 feed: action.value.feed
-            }
+            };
+
+        case 'MOUNTMASTERLIST':
+            return{
+                ...state,
+                mountMasterList: action.value.list
+            };
 
         default:
             return state;
