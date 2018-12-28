@@ -74,7 +74,7 @@ class mountGridScreen extends React.Component {
                 </Header>
                 <Content>
                 <Picker
-                    selectedValue={this.state.specName}
+                    selectedValue={this.state.categoryName}
                     onValueChange={(itemValue, itemPosition) => this.setState({categoryNumber: itemPosition, categoryName: itemValue})}
                     itemStyle={{color:'white'}}>
                     {this.talentListMapper()}
