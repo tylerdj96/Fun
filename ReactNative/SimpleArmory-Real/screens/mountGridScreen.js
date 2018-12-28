@@ -11,20 +11,41 @@ import { SuperGridSectionList } from 'react-native-super-grid';
 
 var rarityDict = {1: "Common", 2: "Uncommon", 3: "Rare", 4: "Epic"};
 
+
 class mountGridScreen extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state ={
+            categoryNumber: 0,
+            categoryName: ""
+        }
+    }
 
-    gridMapper = () =>{
+    talentListMapper = () =>{
+        var category_list = [];
+
+        for (var category in mountMasterList){
+                var temp_object = {key: category, label: mountMasterList[category].name};
+                category_list.push(temp_object);
+        }
+
+        return category_list.map( (x,i) => {
+            return( <Picker.Item label={x.label} key={i} value={x.label}  />)} )
+    };
+
+
+    gridMapper = (index) =>{
 
         var sectionList = [];
 
-        for (var subCat in mountMasterList[0].subcats){
+        for (var subCat in mountMasterList[index].subcats){
             var section = {title: '', data:[]};
-            for(var mounts in mountMasterList[0].subcats[subCat].items) {
-                var tempMountEntry = {icon: mountMasterList[0].subcats[subCat].items[mounts].icon};
+            for(var mounts in mountMasterList[index].subcats[subCat].items) {
+                var tempMountEntry = {icon: mountMasterList[index].subcats[subCat].items[mounts].icon};
                 section.data.push(tempMountEntry);
             }
-            section.title = mountMasterList[0].subcats[subCat].name;
+            section.title = mountMasterList[index].subcats[subCat].name;
             sectionList.push(section);
         }
 
@@ -51,14 +72,21 @@ class mountGridScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
+                <Content>
+                <Picker
+                    selectedValue={this.state.specName}
+                    onValueChange={(itemValue, itemPosition) => this.setState({categoryNumber: itemPosition, categoryName: itemValue})}
+                    itemStyle={{color:'white'}}>
+                    {this.talentListMapper()}
+                </Picker>
             <SuperGridSectionList
                 itemDimension={50}
-                sections={this.gridMapper()}
+                sections={this.gridMapper(this.state.categoryNumber)}
                 style={styles.gridView}
                 renderItem={({ item }) => (
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                         <Image
-                        style={{width: 50, height: 50, opacity: 0.1}}
+                        style={{width: 50, height: 50, opacity: 1}}
                         source={{uri: 'https://wow.zamimg.com/images/wow/icons/medium/' + item.icon +'.jpg'}}
                         />
                     </View>
@@ -67,6 +95,7 @@ class mountGridScreen extends React.Component {
                     <Text style={{ color: 'green' }}>{section.title}</Text>
                 )}
             />
+                </Content>
             </Container>
 
         );
