@@ -8,6 +8,7 @@ import talentScreen from '../screens/talentScreen.js'
 import achievementScreen from '../screens/achievementScreen.js'
 
 //Drawers for Char->Other
+import mountGridScreen from '../screens/mountGridScreen.js'
 import mountScreen from '../screens/mountScreen.js'
 
 //Tab navigators
@@ -44,7 +45,10 @@ export const Drawer = createDrawerNavigator({
     },
     Achievements: {
         screen: achievementScreen
-    }
+    },
+    MountGrid: {
+        screen: mountGridScreen
+    },
     },
 {
     initialRouteName: 'Character',

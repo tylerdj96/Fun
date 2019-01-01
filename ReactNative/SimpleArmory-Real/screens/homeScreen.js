@@ -7,10 +7,11 @@ import {
     updateRealm,
     updateVisible,
     updateRealmList,
-    updateIsError
+    updateIsError, updateMountMasterList
 } from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 import {Button, Icon, Text, Item, Input, Content, Header} from 'native-base'
+import {mountMasterList} from "../assets/collectables";
 
 class HomeScreen extends React.Component {
 
@@ -29,10 +30,14 @@ class HomeScreen extends React.Component {
     };
 
     async componentDidMount(){
+        var tempList = {"list":[{"test1": 0}, {"test2": 1}]};
+        // var tempList2 = tempList.slice(0);
+        console.log(mountMasterList[0].subcats[0].id);
             return await fetch('https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc')
             .then((response) => response.json())
             .then((responseJson) => {
                 updateRealmList(responseJson.realms)
+
 
             })
             .catch((error) => {
