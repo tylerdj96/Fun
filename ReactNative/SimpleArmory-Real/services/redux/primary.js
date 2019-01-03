@@ -27,6 +27,7 @@ export const initialState = {
 
     ],
     achievementPoints: "",
+    mountMasterList: [],
     feed: [],
     images: [],
     isLoading: true,
@@ -49,7 +50,8 @@ export function mapStateToProps(state){
         mounts: state.mounts,
         talents: state.talents,
         achievementPoints: state.achievementPoints,
-        feed: state.feed
+        feed: state.feed,
+        mountMasterList: state.mountMasterList
     }
 }
 

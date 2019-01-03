@@ -97,6 +97,14 @@ export function updateFeed(value){
     store.dispatch(action);
 }
 
+export function updateMountMasterList(value){
+    const action = {
+        type: 'MOUNTMASTERLIST',
+        value
+    }
+    store.dispatch(action);
+}
+
 export function updateTest(value){
     const action ={
         type: 'TEST',
