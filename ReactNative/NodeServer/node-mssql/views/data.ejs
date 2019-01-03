@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CONNECTING SQL SERVER FROM NODE JS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Player Name</th>
+                    <th>Server Name</th>
+                    <th>2v2 Rating</th>
+                    <th>3v3 Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0;i<model.length;i++){ %>
+                    <tr>
+                        <td>
+                            <%=model[i].ID %>
+                        </td>
+                        <td>
+                            <%=model[i].PlayerName %>
+                        </td>
+                        <td>
+                            <%=model[i].ServerName %>
+                        </td>
+                        <td>
+                            <%=model[i].TwoPlayerRating %>
+                        </td>
+                        <td>
+                            <%=model[i].ThreePlayerRating %>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
