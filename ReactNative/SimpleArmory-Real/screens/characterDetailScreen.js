@@ -86,11 +86,13 @@ class characterDetailScreen extends React.Component {
 
 
     async componentDidMount(){
-
-        const characterURI = 'https://us.api.battle.net/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp+mounts+talents+achievements+feed&locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc';
+        console.log("!"+this.props.token);
+        console.log(this.props.realm);
+        console.log(this.props.character.name);
+        const characterURI = 'https://us.api.blizzard.com/wow/character/'+this.props.realm+'/'+this.props.character.name+'?fields=pvp%2Ctalents%2Cmounts%2Cachievements%2Cfeed&locale=en_US&access_token='+this.props.token;
 
         updateIsLoading(true);
-
+        console.log(characterURI);
         const response = await this.dataCall(characterURI);
 
     }
@@ -98,7 +100,12 @@ class characterDetailScreen extends React.Component {
 
 
     dataCall = async (characterURI) => {
-        let response = await fetch(characterURI);
+        let response = await fetch(characterURI,{
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        console.log(response);
         let responseStatus = await response.ok;
         if (responseStatus) {
 
@@ -115,11 +122,11 @@ class characterDetailScreen extends React.Component {
             updateMounts(parsedJson);
             updatePVP(parsedJson);
 
-            const localDBURI = 'http://192.168.50.148:4501/SendPlayerData?PlayerName=' + this.props.character.name + '&ServerName=' + this.props.realm + '&twos=' + this.props.PVP.twos.rating + '&threes=' + this.props.PVP.threes.rating;
-
-            console.log(localDBURI);
-
-            await fetch(localDBURI);
+            // const localDBURI = 'http://192.168.50.148:4501/SendPlayerData?PlayerName=' + this.props.character.name + '&ServerName=' + this.props.realm + '&twos=' + this.props.PVP.twos.rating + '&threes=' + this.props.PVP.threes.rating;
+            //
+            // console.log(localDBURI);
+            //
+            // await fetch(localDBURI);
 
             //API call almost always, if not always, returns talents out of order, so we need to order them /shrug
             for(var i=0; i<parsedJson.talents.length; i++){
@@ -175,7 +182,15 @@ class characterDetailScreen extends React.Component {
         if(this.props.isLoading){
             return(
                 <Container style={{backgroundColor: '#000000'}}>
-                    <Header />
+                    <Header>
+                    <Left>
+                        <Button transparent     onPress = {() => {
+                            this.props.navigation.navigate('Home')
+                        }}>
+                            <Icon name='home' />
+                        </Button>
+                    </Left>
+                    </Header>
                     <Content contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
                         <Spinner color = 'white'/>
                     </Content>

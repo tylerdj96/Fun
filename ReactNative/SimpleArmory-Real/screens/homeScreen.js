@@ -7,16 +7,18 @@ import {
     updateRealm,
     updateVisible,
     updateRealmList,
-    updateIsError, updateMountMasterList
+    updateIsError, updateToken, updateMountMasterList
 } from '../services/redux/actionCreators';
 import {mapStateToProps} from '../services/redux/primary';
 import {Button, Icon, Text, Item, Input, Content, Header} from 'native-base'
+import {decode as atob, encode as btoa} from 'base-64'
 import {mountMasterList} from "../assets/collectables";
 
 class HomeScreen extends React.Component {
 
     constructor(props, ctx){
         super(props, ctx);
+        this.state = {foobar: {}};
     }
 
     realmListMapper = () =>{
@@ -30,15 +32,36 @@ class HomeScreen extends React.Component {
     };
 
     async componentDidMount(){
-        var tempList = {"list":[{"test1": 0}, {"test2": 1}]};
-        // var tempList2 = tempList.slice(0);
-        console.log(mountMasterList[0].subcats[0].id);
-            return await fetch('https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=352hb33zd7qt4skgssjz3k73vkk45egc')
+            await fetch('https://us.battle.net/oauth/token',{
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic '+btoa('c22ce62fd8f6467bb9656f2fa971ac35:t8ocjIix6LC8mwBfyHSoc3gKAGwMns8E'),
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'grant_type=client_credentials'
+            })
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    updateToken(responseJson);
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            return await this.fetchRealms(this.props.token);
+    }
+
+    async fetchRealms(token){
+        return await fetch('https://us.api.blizzard.com/wow/realm/status?locale=en_US&access_token='+token,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
             .then((response) => response.json())
             .then((responseJson) => {
-                updateRealmList(responseJson.realms)
-
-
+                updateRealmList(responseJson.realms);
             })
             .catch((error) => {
                 console.error(error);
@@ -60,7 +83,6 @@ class HomeScreen extends React.Component {
             <Content style={{backgroundColor: '#000000'}}>
                 <Header/>
                 <Text style={{alignSelf: 'center', fontStyle: 'italic', color: 'white', padding: 50}}>Welcome to Simple Armory Mobile!</Text>
-
                 <Button iconRight info onPress={this.onShow} style = {{padding: 10, alignSelf:'center'}}>
                     <Text>{this.props.realm}</Text>
                     <Icon name='globe'/>

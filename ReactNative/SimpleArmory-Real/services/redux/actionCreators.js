@@ -105,6 +105,14 @@ export function updateMountMasterList(value){
     store.dispatch(action);
 }
 
+export function updateToken(value){
+    const action = {
+        type: 'TOKEN',
+        value
+    }
+    store.dispatch(action);
+}
+
 export function updateTest(value){
     const action ={
         type: 'TEST',

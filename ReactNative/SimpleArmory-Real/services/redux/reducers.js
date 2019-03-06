@@ -97,7 +97,11 @@ export function reducer(state=initialState, action){
                 ...state,
                 mountMasterList: action.value.list
             };
-
+        case 'TOKEN':
+            return{
+                ...state,
+                token: action.value.access_token
+            };
         default:
             return state;
     }
